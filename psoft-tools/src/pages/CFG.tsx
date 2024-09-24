@@ -9,9 +9,8 @@ export default function CFGCanvas() {
 
 	return (
 	<div>
-		<Navbar/>
 		<ReactFlowProvider>
-    		<DragDrop/>
+    	<DragDrop/>
   		</ReactFlowProvider>
   		
   	</div>
