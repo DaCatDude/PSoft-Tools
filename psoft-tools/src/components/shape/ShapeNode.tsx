@@ -11,22 +11,24 @@ import {
   
   import { useCallback, useState } from 'react';
   
-  import Shape from './shape';
+  import Shape from './shape.tsx';
   import { type ShapeType } from './shape';
   import NodeLabel from '../label';
   
-  export type ShapeNodeData = {
+  export type ShapeNodeData<
+  NodeData extends Record<string, unknown> = Record<string, unknown>,
+  > = {
     id: string,
-    position,
-    sourcePosition?,
-    targetPosition?,
-    selected?,
-    dragHandle?,
-    selectable?,
-    deletable?,
-    draggable?,
-    parentId?,
-    data,
+    position: Position,
+    sourcePosition?: Position,
+    targetPosition?: Position,
+    selected?: boolean,
+    dragHandle?: boolean,
+    selectable?: boolean,
+    deletable?: boolean,
+    draggable?: boolean,
+    parentId?: string,
+    data: NodeData,
     width?: number;
     height?: number;
     type: ShapeType;

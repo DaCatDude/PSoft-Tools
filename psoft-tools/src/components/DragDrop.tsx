@@ -109,7 +109,7 @@ export default function DragDrop() {
   };
 
   const onEdgeClick = (event: MouseEvent, edge: Edge) => {
-    setEdges((eds) => 
+    setEdges((ed) => 
       eds.map((ed) => {
         if (globalThis.branchVal === 'trueBranch') {
           takeSnapshot();
