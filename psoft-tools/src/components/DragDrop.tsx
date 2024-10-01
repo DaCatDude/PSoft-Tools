@@ -41,17 +41,17 @@ export default function DragDrop() {
   const { undo, redo, canUndo, canRedo, takeSnapshot } = useUndoRedo();
 
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
+    (params: Edge<any>) => setEdges((eds) => addEdge(params, eds)),
     [],
   );
 
-  const onDragOver = useCallback((event) => {
+  const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
   const onDrop = useCallback(
-    (event) => {
+    (event: React.DragEvent) => {
       event.preventDefault();
 
       const type = event.dataTransfer.getData('application/reactflow');
@@ -110,7 +110,7 @@ export default function DragDrop() {
 
   const onEdgeClick = (event: MouseEvent, edge: Edge) => {
     setEdges((ed) => 
-      ed.map((ed) => {
+      eds.map((ed) => {
         if (globalThis.branchVal === 'trueBranch') {
           takeSnapshot();
           return ed.id === edge.id ? {...edge, data: {...edge.data, }, label: "true",} : ed;
