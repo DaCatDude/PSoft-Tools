@@ -7,6 +7,7 @@ import {
     useKeyPress,
     useReactFlow,
     useUpdateNodeInternals,
+    XYPosition,
   } from '@xyflow/react';
   
   import { useCallback, useState } from 'react';
@@ -19,11 +20,11 @@ import {
   NodeData extends Record<string, unknown> = Record<string, unknown>,
   > = {
     id: string,
-    position: Position,
+    position: XYPosition,
     sourcePosition?: Position,
     targetPosition?: Position,
     selected?: boolean,
-    dragHandle?: boolean,
+    dragHandle?: string,
     selectable?: boolean,
     deletable?: boolean,
     draggable?: boolean,
