@@ -110,7 +110,7 @@ export default function DragDrop() {
 
   const onEdgeClick = (event: MouseEvent, edge: Edge) => {
     setEdges((ed) => 
-      eds.map((ed) => {
+      ed.map((ed) => {
         if (globalThis.branchVal === 'trueBranch') {
           takeSnapshot();
           return ed.id === edge.id ? {...edge, data: {...edge.data, }, label: "true",} : ed;
