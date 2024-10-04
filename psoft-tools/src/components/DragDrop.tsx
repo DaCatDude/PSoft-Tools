@@ -10,6 +10,7 @@ import {
   NodeTypes,
   type Edge,
   ConnectionMode,
+  type Connection,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import Sidebar from './Sidebar.tsx';
@@ -18,6 +19,10 @@ import type * as CSS from 'csstype';
 import ShapeNode from './shape/ShapeNode.tsx';
 import { toPng } from 'html-to-image';
 import useUndoRedo from './useUndoRedo';
+
+declare global {
+  var branchVal: string;
+}
 
 export default function DragDrop() {
   const initialNodes = [
@@ -41,7 +46,7 @@ export default function DragDrop() {
   const { undo, redo, canUndo, canRedo, takeSnapshot } = useUndoRedo();
 
   const onConnect = useCallback(
-    (params: Edge<any>) => setEdges((eds) => addEdge(params, eds)),
+    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [],
   );
 
@@ -110,7 +115,7 @@ export default function DragDrop() {
 
   const onEdgeClick = (event: MouseEvent, edge: Edge) => {
     setEdges((ed) => 
-      eds.map((ed) => {
+      ed.map((ed) => {
         if (globalThis.branchVal === 'trueBranch') {
           takeSnapshot();
           return ed.id === edge.id ? {...edge, data: {...edge.data, }, label: "true",} : ed;
@@ -124,7 +129,7 @@ export default function DragDrop() {
     );
   };
 
-  function downloadImage(dataUrl) {
+  function downloadImage(dataUrl: string) {
     const a = document.createElement('a');
 
     a.setAttribute('download', 'CFG.png');
