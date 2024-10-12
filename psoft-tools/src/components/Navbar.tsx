@@ -53,9 +53,6 @@ export default function Navbar() {
                     <Link to="/DesignPatterns">
                         Design Patterns
                     </Link>
-                    <Link to="/CFG">
-                        CFG
-                    </Link>
 
                 </div>
 
