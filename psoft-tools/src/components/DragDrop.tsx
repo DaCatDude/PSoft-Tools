@@ -20,9 +20,7 @@ import ShapeNode from './shape/ShapeNode.tsx';
 import { toPng } from 'html-to-image';
 import useUndoRedo from './useUndoRedo';
 
-declare global {
-  var branchVal: string;
-}
+const [branchVal, setBranchVal] = useState<string | null>(null);
 
 export default function DragDrop() {
   const initialNodes = [
@@ -38,7 +36,7 @@ export default function DragDrop() {
   };
   let id = 0;
   const getId = () => `dndnode_${id++}`;
-  const reactFlowWrapper = useRef(null);
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const { screenToFlowPosition } = useReactFlow();
@@ -112,20 +110,19 @@ export default function DragDrop() {
     height: '1000px',
     marginTop: "50px"
   };
-
+  
   const onEdgeClick = (event: MouseEvent, edge: Edge) => {
-    setEdges((ed) => 
+    setEdges((ed) =>
       ed.map((ed) => {
-        if (globalThis.branchVal === 'trueBranch') {
+        if (branchVal === 'trueBranch') {
           takeSnapshot();
-          return ed.id === edge.id ? {...edge, data: {...edge.data, }, label: "true",} : ed;
-        } else if (globalThis.branchVal === 'falseBranch') {
+          return ed.id === edge.id ? { ...edge, label: "true" } : ed;
+        } else if (branchVal === 'falseBranch') {
           takeSnapshot();
-          return ed.id === edge.id ? {...edge, data: {...edge.data, }, label: "false",} : ed;
+          return ed.id === edge.id ? { ...edge, label: "false" } : ed;
         }
-        return ed.id === edge.id ? {...edge, data: {...edge.data, }} : ed;
-        }
-      ),
+        return ed;
+      })
     );
   };
 
