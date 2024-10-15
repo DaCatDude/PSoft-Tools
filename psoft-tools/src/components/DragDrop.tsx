@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, MouseEvent, useState } from 'react';
+import React, { useRef, useCallback, MouseEvent, useState, useEffect } from 'react';
 import {
   ReactFlow,
   addEdge,
@@ -41,9 +41,16 @@ export default function DragDrop() {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
-  const { screenToFlowPosition } = useReactFlow();
-  const reactFlowInstance = useReactFlow();
+  const { screenToFlowPosition, getNodes } = useReactFlow();
   const { undo, redo, canUndo, canRedo, takeSnapshot } = useUndoRedo();
+
+  const reactFlowInstance = useReactFlow();
+
+  useEffect(() => {
+    if (!reactFlowInstance) {
+      console.warn('ReactFlow instance not yet initialized');
+    }
+  }, [reactFlowInstance]);
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
@@ -57,6 +64,11 @@ export default function DragDrop() {
 
   const onDrop = useCallback(
     (event: React.DragEvent) => {
+      if (!screenToFlowPosition || !reactFlowInstance) {
+        console.warn('ReactFlow instance not initialized or unavailable.');
+        return; // Prevent running if ReactFlow isn't initialized
+      }
+
       event.preventDefault();
 
       const type = event.dataTransfer.getData('application/reactflow');
@@ -137,7 +149,6 @@ export default function DragDrop() {
     a.click();
   }
 
-  const { getNodes } = useReactFlow();
     const onClick = () => {
     // we calculate a transform for the nodes so that all nodes are visible
     // we then overwrite the transform of the `.react-flow__viewport` element
