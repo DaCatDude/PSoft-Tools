@@ -3,6 +3,7 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import { createBrowserRouter, RouterProvider, LoaderFunction, ActionFunction } from "react-router-dom";
+import { ReactFlowProvider, ReactFlow } from '@xyflow/react';
 
 interface RouteCommon {
   loader?: LoaderFunction;
@@ -52,6 +53,12 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
+  // return (
+  //   <ReactFlowProvider>
+  //     <RouterProvider router={router} />
+  //   </ReactFlowProvider>
+  // )
+  
   return <RouterProvider router={router} />;
 };
 
