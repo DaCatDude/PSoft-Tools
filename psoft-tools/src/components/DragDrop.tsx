@@ -17,7 +17,7 @@ import './DragDrop.css';
 import type * as CSS from 'csstype';
 import ShapeNode from './ShapeNode';
 import { toPng } from 'html-to-image';
-import useUndoRedo from './useUndoRedo';
+import useUndoRedo from './useUndoRedo.ts';
 
 export default function DragDrop() {
   const initialNodes = [
