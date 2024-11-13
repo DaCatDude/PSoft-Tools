@@ -18,6 +18,11 @@ export default function Examples() {
         return x;
     }
     }`;
+    const code3 =`method Testing()
+    {
+    var v := Abs(3);
+    assert 0 <= v;
+    }`
 
     return (
         <div style={{ padding: "20px", marginTop: "60px", textAlign: "left" }}>
@@ -66,6 +71,21 @@ export default function Examples() {
             <p style={{ marginTop: "10px" }}>This portion of code is another method example called Abs and takes in one input x which is an int and returns a value y which is also an int. There is also an ensure statement that makes sure that y is greater than or equal to 0 because that is what should be returned when taking an absolute value. Inside the method, there is an if statement that returns -x if the value of x is less than 0 or else it returns x. This method ultimately takes the absolute value of x and returns it.</p>
             <p style={{ marginTop: "10px" }}>This function displays the use of <b>return</b> statements and if statements in Dafny.</p>
             <p style={{ marginTop: "10px" }}>Dafny also has the other comparison operators: <b>&lt;, &gt;, &lt;=, &gt;=, and ==</b>.</p>
+
+            <h2 style={{ marginTop: "30px" }}><b>Dafny Method Example #3:</b></h2>
+            <pre style={{
+                backgroundColor: "#f5f5f5",
+                padding: "10px",
+                borderRadius: "5px",
+                fontFamily: "monospace",
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                border: "1px solid #ddd"
+            }}>
+                <code>{code3}</code>
+            </pre>
+
+            <p style={{ marginTop: "10px" }}>This code continues a Testing() method which uses the absolute value function and tests it using the assert statement. This <b>assert</b> statement makes sure that v, which is assigned the value Abs(3), is greater than or equal to 0. It should be greater than or equal to 0 because it is an absolute value. </p>
         </div>
     );
 }
