@@ -59,6 +59,7 @@ export default function Examples() {
 
             <p style={{ marginTop: "10px" }}>This portion of code is another method example called Abs and takes in one input x which is an int and returns a value y which is also an int. Inside the method, there is an if statement that returns -x if the value of x is less than 0 or else it returns x. This method ultimately takes the absolute value of x and returns it.</p>
             <p style={{ marginTop: "10px" }}>This function displays the use of return statements and if statements in Dafny.</p>
+            <p style={{ marginTop: "10px" }}>Dafny also has the other comparison operators: &lt;, &gt;, &lt;=, &gt;=, and ==.</p>
         </div>
     );
 }
