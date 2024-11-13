@@ -14,6 +14,9 @@ export default function Examples() {
             </div>
             <h1>Dafny Examples</h1>
             <p style={{ marginTop: "10px" }}>This page is a learning page dedicated to learning Dafny and TypeScript.</p>
+            <p style={{ marginTop: "10px" }}>I used this <a href="https://dafny.org/dafny/OnlineTutorial/guide" target="_blank" rel="noopener noreferrer">
+                link
+            </a> to learn Dafny and by making this page, I learned some TypeScript.</p>
             
             <h2 style={{ marginTop: "30px" }}>Dafny Method Example:</h2>
             <pre style={{
@@ -30,6 +33,8 @@ export default function Examples() {
 
             <p style={{ marginTop: "10px" }}>This portion of code is a method, which is basically a function in any other language, called MultipleReturns. It takes two inputs: x (an integer) and y (an integer). It has two return values: more (an integer) and less (an integer). Inside the method, more is assigned the value of x + y and less is assigned the value of x - y. Then, a comment is made using //.</p>
             <p style={{ marginTop: "10px" }}>I additionally learned that functions exist in Dafny but serve a different purpose.</p>
+            <p style={{ marginTop: "10px" }}>Assignments use := and Equality uses ==</p>
+            <p style={{ marginTop: "10px" }}>Single line comments are made using // and Multi-line comments can be made using /**/</p>
         </div>
     );
 }
