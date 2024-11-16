@@ -23,6 +23,14 @@ export default function Examples() {
     var v := Abs(3);
     assert 0 <= v;
     }`
+    const func1 = `function abs(x: int): int
+    {
+    if x < 0 then -x else x
+    }
+    method m()
+    {
+    assert abs(3) == 3;
+    }`
 
     return (
         <div style={{ padding: "20px", marginTop: "60px", textAlign: "left" }}>
@@ -86,6 +94,22 @@ export default function Examples() {
             </pre>
 
             <p style={{ marginTop: "10px" }}>This code continues a Testing() method which uses the absolute value function and tests it using the assert statement. This <b>assert</b> statement makes sure that v, which is assigned the value Abs(3), is greater than or equal to 0. It should be greater than or equal to 0 because it is an absolute value. </p>
+
+            <h2 style={{ marginTop: "30px" }}><b>Dafny Function Example:</b></h2>
+            <pre style={{
+                backgroundColor: "#f5f5f5",
+                padding: "10px",
+                borderRadius: "5px",
+                fontFamily: "monospace",
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                border: "1px solid #ddd"
+            }}>
+                <code>{func1}</code>
+            </pre>
+
+            <p style={{ marginTop: "10px" }}>This code contains a function abs() with an if statement that returns -x if x &lt; 0 and x if otherwise. Then, method m() is called to check if abs(3) is correct by using the assert statement.</p>
+            
         </div>
     );
 }
