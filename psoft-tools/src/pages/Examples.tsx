@@ -135,7 +135,7 @@ export default function Examples() {
                 <code>{func2}</code>
             </pre>
 
-            <p style={{ marginTop: "10px" }}>You can do a recursive Fibonacci function like above. nat is natural numbers. </p>
+            <p style={{ marginTop: "10px" }}>You can do a recursive Fibonacci function like above. nat is natural numbers. However, this is not efficient as it has exponential complexity. </p>
         </div>
     );
 }
