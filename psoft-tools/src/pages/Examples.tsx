@@ -108,8 +108,8 @@ export default function Examples() {
                 <code>{func1}</code>
             </pre>
 
-            <p style={{ marginTop: "10px" }}>This code contains a function abs() with an if statement that returns -x if x &lt; 0 and x if otherwise. Then, method m() is called to check if abs(3) is correct by using the assert statement.</p>
-            
+            <p style={{ marginTop: "10px" }}>This code contains a function abs() with an if statement that returns -x if x &lt; 0 and x if otherwise. Then, method m(), which is the body of the code, is called to check if abs(3) is correct by using the assert statement.</p>
+            <p style={{ marginTop: "10px" }}>Functions must only contain one statement, with the correct type. Functions can be used directly in specification so it doesn't need to be saved to a local variable, and postconditions and preconditions aren't necessary.</p>
         </div>
     );
 }
