@@ -31,6 +31,17 @@ export default function Examples() {
     {
     assert abs(3) == 3;
     }`
+    const func2 = `function fib(n: nat): nat
+    {
+    if n == 0 then 0
+    else if n == 1 then 1
+    else fib(n - 1) + fib(n - 2)
+    }
+    method ComputeFib(n: nat) returns (b: nat)
+    ensures b == fib(n)
+    {
+    ...
+    }`
 
     return (
         <div style={{ padding: "20px", marginTop: "60px", textAlign: "left" }}>
@@ -95,7 +106,7 @@ export default function Examples() {
 
             <p style={{ marginTop: "10px" }}>This code continues a Testing() method which uses the absolute value function and tests it using the assert statement. This <b>assert</b> statement makes sure that v, which is assigned the value Abs(3), is greater than or equal to 0. It should be greater than or equal to 0 because it is an absolute value. </p>
 
-            <h2 style={{ marginTop: "30px" }}><b>Dafny Function Example:</b></h2>
+            <h2 style={{ marginTop: "30px" }}><b>Dafny Function Example #1:</b></h2>
             <pre style={{
                 backgroundColor: "#f5f5f5",
                 padding: "10px",
@@ -110,6 +121,21 @@ export default function Examples() {
 
             <p style={{ marginTop: "10px" }}>This code contains a function abs() with an if statement that returns -x if x &lt; 0 and x if otherwise. Then, method m(), which is the body of the code, is called to check if abs(3) is correct by using the assert statement.</p>
             <p style={{ marginTop: "10px" }}>Functions must only contain one statement, with the correct type. Functions can be used directly in specification so it doesn't need to be saved to a local variable, and postconditions and preconditions aren't necessary.</p>
+
+            <h2 style={{ marginTop: "30px" }}><b>Dafny Function Example #2:</b></h2>
+            <pre style={{
+                backgroundColor: "#f5f5f5",
+                padding: "10px",
+                borderRadius: "5px",
+                fontFamily: "monospace",
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                border: "1px solid #ddd"
+            }}>
+                <code>{func2}</code>
+            </pre>
+
+            <p style={{ marginTop: "10px" }}>You can do a recursive Fibonacci function like above. nat is natural numbers. </p>
         </div>
     );
 }
