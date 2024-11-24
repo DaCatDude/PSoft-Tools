@@ -3,7 +3,7 @@ import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
 import { post } from "../lib/api";
 import { ThreeDots } from "react-loader-spinner";
-import Compiler from "../components/compiler";
+import Compiler from "../components/CompilerTwo";
 
 export default function LoopInvariant() {
     const [data, setData] = useState("");
@@ -50,6 +50,11 @@ export default function LoopInvariant() {
                         defaultValue="// Input should be in the format 'code {postcondition}'" />
                 </div>
                 <div className="flex flex-col  relative pl-8 ">
+                    {/* include a text box so we can pinpoint what variables are being changed */}
+                    <label>
+                        Input Variable Name: <input name="myInput" />
+                    </label>
+
                     {/* include the java compiler */}
                     <Compiler/>
 
