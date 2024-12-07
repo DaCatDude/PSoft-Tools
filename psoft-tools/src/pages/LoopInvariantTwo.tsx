@@ -27,9 +27,11 @@ function extractVarsFromLoops(code: string) {
             console.log("Loop:", node);
 
             node.children?.forEach((child: any) => {
-
-                //check for assignment statements
-                if (child instanceof Java8Parser.StatementContext) {
+                //check
+                console.log("Child node type:", child.constructor.name); 
+                console.log("Child node text:", child.getText());  
+                
+                if (child instanceof Java8Parser.BasicForStatementContext || child instanceof Java8Parser.BasicForStatementContext) {
                     const statement = child.getText();
                     console.log("Statement inside loop:", statement);
 
@@ -37,7 +39,6 @@ function extractVarsFromLoops(code: string) {
                     if (statement.includes("=")) {
                         const [lhs, rhs] = statement.split("=").map(s => s.trim()); // Split and clean up the sides
                         console.log(`Detected assignment: ${lhs} = ${rhs}`);
-
                         modifiedVariables.push({
                             name: lhs,
                             value: rhs,
