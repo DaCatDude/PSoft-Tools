@@ -5,7 +5,8 @@
         "lib": [
             "ES2020",
             "DOM",
-            "DOM.Iterable"
+            "DOM.Iterable",
+            "ESNext"
         ],
         "module": "ESNext",
         "skipLibCheck": true,
@@ -26,8 +27,7 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src",
-        "src/antlr4.d.ts"
+        "src/**/*"
     ],
     "references": [
         {

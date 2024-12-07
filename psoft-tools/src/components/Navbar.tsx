@@ -53,7 +53,7 @@ export default function Navbar() {
                     <Link to="/DesignPatterns">
                         Design Patterns
                     </Link>
-                    <Link to="/LoopInvariant">
+                    <Link to="/LoopInvariantTwo">
                         Loop Invariant
                     </Link>
 

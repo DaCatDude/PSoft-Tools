@@ -25307,3 +25307,5 @@ Java8Parser.PostIncrementExpression_lf_postfixExpressionContext = PostIncrementE
 Java8Parser.PostDecrementExpressionContext = PostDecrementExpressionContext; 
 Java8Parser.PostDecrementExpression_lf_postfixExpressionContext = PostDecrementExpression_lf_postfixExpressionContext; 
 Java8Parser.CastExpressionContext = CastExpressionContext; 
+
+export { Java8Parser };
