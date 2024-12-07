@@ -26,7 +26,8 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src"
+        "src",
+        "src/antlr4.d.ts"
     ],
     "references": [
         {
