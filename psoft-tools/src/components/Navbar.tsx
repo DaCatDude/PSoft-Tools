@@ -56,6 +56,9 @@ export default function Navbar() {
                     <Link to="/CFGCanvas">
                         CFG
                     </Link>
+                    <Link to="/BranchCoverage">
+                        Branch Coverage
+                    </Link>
 
                 </div>
 
