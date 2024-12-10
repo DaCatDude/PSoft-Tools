@@ -4,6 +4,7 @@ import { useState } from "react";
 import { post } from "../lib/api";
 import { ThreeDots } from "react-loader-spinner";
 import dafnyParser from "../lib/DafnyParser";
+import JDoodleCompiler from "../components/JDoodleCompiler";
 
 //Create Routing File
 
@@ -14,9 +15,8 @@ export default function HoareTriple() {
 
     const handleCoverage = () => {
         setLoading(true);
-        const dafnyCode = dafnyParser(code.replace(/\r\n/g, "\n"));
-        console.log(dafnyCode);
-        post("http://localhost:3000/verify", dafnyCode)
+        console.log(code);
+        post("http://localhost:3000/verify", code)
             .then((response) => {
                 setLoading(false);
                 setData(response);
@@ -28,7 +28,7 @@ export default function HoareTriple() {
 
     const handleClickClear = () => {
         setData("");
-        //setCode("// input code");
+        setCode("// Input Java code");
     };
 
     const handleEditorChange = (value: string | undefined) => {
@@ -50,9 +50,10 @@ export default function HoareTriple() {
                 <div style={{ width: "50%", justifyContent: "left" }}>
 
                     <Editor height="92vh" width="50vw" onChange={handleEditorChange} defaultLanguage="java"
-                        defaultValue={``} />
+                        defaultValue={`//Input Java code`} />
                 </div>
                 <div className="flex flex-col justify-center relative pl-8">
+                    <JDoodleCompiler/>
                     <div className=" flex-grow" style={{ whiteSpace: "pre", textAlign: "left" }}>
                         {loading ? (
                             <ThreeDots color="gray" height={100} width={100} />
