@@ -15,16 +15,35 @@ export default function HoareTriple() {
 
     const handleCoverage = () => {
         setLoading(true);
-        console.log(code);
-        post("http://localhost:3000/verify", code)
+    
+        const contents = {
+            filename: "test.java",
+            code: code,
+        };
+    
+        fetch("http://localhost:8080/upload-code", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contents),
+        })
             .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((responseData) => {
                 setLoading(false);
-                setData(response);
+                setData(JSON.stringify(responseData, null, 2));
             })
             .catch((error) => {
-                console.error("error: ", error);
+                setLoading(false);
+                console.error("Error occurred:", error);
+                setData("Error: Unable to process the request.");
             });
-    };
+    };    
 
     const handleClickClear = () => {
         setData("");

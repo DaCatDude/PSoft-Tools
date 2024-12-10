@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 const JDoodleCompiler = () => {
   useEffect(() => {
-    // Function to add JDoodle script
     const loadJDoodleScript = () => {
       if (!document.querySelector('script[src="https://www.jdoodle.com/assets/jdoodle-pym.min.js"]')) {
         const script = document.createElement('script');
@@ -15,7 +14,6 @@ const JDoodleCompiler = () => {
 
     loadJDoodleScript();
 
-    // Cleanup script on component unmount
     return () => {
       const script = document.querySelector('script[src="https://www.jdoodle.com/assets/jdoodle-pym.min.js"]');
       if (script) {
