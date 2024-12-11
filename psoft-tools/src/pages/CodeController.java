@@ -1,8 +1,8 @@
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -20,16 +20,55 @@ public class CodeController {
                 dir.mkdirs();
             }
 
-            File file = new File(dir, fileName);
+            Path filePath = Paths.get(System.getProperty("java.io.tmpdir"), fileName);
+            Files.write(filePath, code.getBytes());
 
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(code);
+            Process compileProcess = Runtime.getRuntime().exec("javac " + filePath);
+            int compileStatus = compileProcess.waitFor();
+            if (compileStatus != 0) {
+                return ResponseEntity.status(500).body("Failed to compile");
             }
 
-            return ResponseEntity.ok("Code saved to file: " + file.getAbsolutePath());
-        } catch (IOException e) {
+            String jacocoAgentPath = "/path/to/jacocoagent.jar"; // Update with your actual path
+            String outputDir = System.getProperty("java.io.tmpdir") + "/coverage";
+            Process runProcess = Runtime.getRuntime().exec(new String[]{
+                "java",
+                "-javaagent:" + jacocoAgentPath + "=destfile=" + outputDir + "/jacoco.exec",
+                fileName
+            });
+
+            int runStatus = runProcess.waitFor();
+            if (runStatus != 0) {
+                return ResponseEntity.status(500).body("Execution Failed");
+            }
+
+            generateCoverageReport(outputDir);
+
+
+            return ResponseEntity.ok("Coverage report generated at: " + outputDir + "/html-report");
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Failed to save code: " + e.getMessage());
         }
+    }
+
+    private void generateCoverageReport(String outputDir) throws IOException {
+        String jacocoCliPath = "/path/to/jacococli.jar";
+        String classFilesDir = System.getProperty("java.io.tmpdir");
+
+        Process process = Runtime.getRuntime().exec(new String[]{
+            "java", "-jar", jacocoCliPath,
+            "report", outputDir + "/jacoco.exec",
+            "--classfiles", classFilesDir,
+            "--sourcefiles", "/path/to/source",
+            "--html", outputDir + "/html-report"
+        });
+
+        int status = process.waitFor();
+        if (status != 0) {
+            throw new IOException("Failed to generate JaCoCo report.");
+        }
+
+        System.out.println("Coverage report generated at: " + outputDir + "/html-report");
     }
 }
